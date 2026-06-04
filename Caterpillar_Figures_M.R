@@ -1,13 +1,13 @@
 ############################################################################################################ DR
 ######################################## Process TB
-tab_TB_dr = multiplex_plot_d(fit_TB_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_TB_dr = multiplex_plot_d(fit_TB_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_TB_dr$x = 1:length(tab_TB_dr$rs_m)
 
 tab_TB_dr = tab_TB_dr[which(tab_TB_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 tab_TB_dr$Site = "Highland"
 
 ######################################## Process SU
-tab_SU_dr = multiplex_plot_d(fit_SU_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_SU_dr = multiplex_plot_d(fit_SU_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_SU_dr$x = 1:length(tab_SU_dr$rs_m)
 
 tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
@@ -15,7 +15,7 @@ tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Pre
 tab_SU_dr$Site = "Altiplano"
 
 ######################################## Process SC
-tab_SC_dr = multiplex_plot_d(fit_SC_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_SC_dr = multiplex_plot_d(fit_SC_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_SC_dr$x = 1:length(tab_SC_dr$rs_m)
 
 tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
@@ -23,7 +23,7 @@ tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Pre
 tab_SC_dr$Site = "Lowland"
 
 ######################################## Process BS
-tab_BS_dr = multiplex_plot_d(fit_BS_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_BS_dr = multiplex_plot_d(fit_BS_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_BS_dr$x = 1:length(tab_BS_dr$rs_m)
 
 tab_BS_dr = tab_BS_dr[which(tab_BS_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
