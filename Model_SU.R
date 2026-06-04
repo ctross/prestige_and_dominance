@@ -3,7 +3,7 @@
 # Outcomes stored as a labeled list
 outcomes_SU = list(
  Dominant = A_Dominant_SU, 
- Prestigous = A_Respect_SU, 
+ Prestigious = A_Respect_SU, 
  Like = A_Like_SU,
  Fear = A_Fear_SU,
  Trust = A_Trusted_SU,
@@ -34,12 +34,12 @@ dat_SU = make_strand_data(
   target_regression = ~ 1,
   dyad_regression = ~ 1,
   mode="mcmc",
-  stan_mcmc_parameters = list(
-    chains = 1,
-    parallel_chains = 1,
+  mcmc_parameters = list(
+    chains = 2,
+    parallel_chains = 2,
     refresh = 1,
     iter_warmup = 1000,
-    iter_sampling = 1000,
+    iter_sampling = 2000,
     max_treedepth = 12,
     adapt_delta = 0.96)
  )

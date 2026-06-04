@@ -1,32 +1,32 @@
 ############################################################################################################ DR
 ######################################## Process TB
-tab_TB_dr = multiplex_plot_d(fit_TB, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_TB_dr = multiplex_plot_d(fit_TB, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_TB_dr$x = 1:length(tab_TB_dr$rs_m)
 
-tab_TB_dr = tab_TB_dr[which(tab_TB_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_TB_dr = tab_TB_dr[which(tab_TB_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 tab_TB_dr$Site = "Highland"
 
 ######################################## Process SU
-tab_SU_dr = multiplex_plot_d(fit_SU, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_SU_dr = multiplex_plot_d(fit_SU, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_SU_dr$x = 1:length(tab_SU_dr$rs_m)
 
-tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_SU_dr$Site = "Altiplano"
 
 ######################################## Process SC
-tab_SC_dr = multiplex_plot_d(fit_SC, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_SC_dr = multiplex_plot_d(fit_SC, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_SC_dr$x = 1:length(tab_SC_dr$rs_m)
 
-tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_SC_dr$Site = "Lowland"
 
 ######################################## Process BS
-tab_BS_dr = multiplex_plot_d(fit_BS, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
+tab_BS_dr = multiplex_plot_d(fit_BS, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="cor")
 tab_BS_dr$x = 1:length(tab_BS_dr$rs_m)
 
-tab_BS_dr = tab_BS_dr[which(tab_BS_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_BS_dr = tab_BS_dr[which(tab_BS_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_BS_dr$Site = "Coast"
 
@@ -51,7 +51,8 @@ c1 = ggplot(tab_dr, aes(x = measure1, y = rs_m, group = Site, color=Site, ymin =
         labs(y = "Regression parameters", x = "") + 
         theme(strip.text.x = element_text(size = 12, face = "bold"), strip.text.y = element_text(size = 12, face = "bold"), 
               axis.text = element_text(size = 12), axis.title.y = element_text(size = 14, face = "bold"), axis.title.x = element_blank()) +
-        theme(strip.text.y = element_text(angle = 360)) +  theme(panel.spacing = grid::unit(1, "lines")) + theme(legend.position="bottom")
+        theme(strip.text.y = element_text(angle = 360)) +  theme(panel.spacing = grid::unit(1, "lines")) + theme(legend.position="bottom") +  
+        theme(panel.spacing.x = unit(1.35, "lines"))
 
 
 ############################################################################################################ GR
@@ -59,21 +60,21 @@ c1 = ggplot(tab_dr, aes(x = measure1, y = rs_m, group = Site, color=Site, ymin =
 tab_TB_gr = multiplex_plot_g(fit_TB, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_TB_gr$x = 1:length(tab_TB_gr$rs_m)
 
-tab_TB_gr = tab_TB_gr[which(tab_TB_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_TB_gr = tab_TB_gr[which(tab_TB_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_TB_gr$Site = "Highland"
 
 ######################################## Process SU
 tab_SU_gr = multiplex_plot_g(fit_SU, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_SU_gr$x = 1:length(tab_SU_gr$rs_m)
 
-tab_SU_gr = tab_SU_gr[which(tab_SU_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_SU_gr = tab_SU_gr[which(tab_SU_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_SU_gr$Site = "Altiplano"
 
 ######################################## Process SC
 tab_SC_gr = multiplex_plot_g(fit_SC, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_SC_gr$x = 1:length(tab_SC_gr$rs_m)
 
-tab_SC_gr = tab_SC_gr[which(tab_SC_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_SC_gr = tab_SC_gr[which(tab_SC_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_SC_gr$Site = "Lowland"
 
 
@@ -81,7 +82,7 @@ tab_SC_gr$Site = "Lowland"
 tab_BS_gr = multiplex_plot_g(fit_BS, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_BS_gr$x = 1:length(tab_BS_gr$rs_m)
 
-tab_BS_gr = tab_BS_gr[which(tab_BS_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_BS_gr = tab_BS_gr[which(tab_BS_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_BS_gr$Site = "Coast"
 
 ######################################## Merged
@@ -105,7 +106,8 @@ c2 = ggplot(tab_gr, aes(x = measure1, y = rs_m, group = Site, color=Site, ymin =
         labs(y = "Regression parameters", x = "") + 
         theme(strip.text.x = element_text(size = 12, face = "bold"), strip.text.y = element_text(size = 12, face = "bold"), 
               axis.text = element_text(size = 12), axis.title.y = element_text(size = 14, face = "bold"), axis.title.x = element_blank()) +
-        theme(strip.text.y = element_text(angle = 360)) +  theme(panel.spacing = grid::unit(1, "lines")) + theme(legend.position="bottom")
+        theme(strip.text.y = element_text(angle = 360)) +  theme(panel.spacing = grid::unit(1, "lines")) + theme(legend.position="bottom") +
+        theme(panel.spacing.x = unit(1.35, "lines"))
 
 
 ggsave("dr_all_sites.pdf", c1, width=8, height=6)
@@ -119,10 +121,10 @@ tab_gr_B$Gender = "B"
 
 
 #### Dyadic plots
-multiplex_plot_d(fit_SC, HPDI=0.9, plot = TRUE, mode="adj", save_plot="DR_SC.pdf", height=10, width=20)
-multiplex_plot_d(fit_BS, HPDI=0.9, plot = TRUE, mode="adj", save_plot="DR_BS.pdf", height=10, width=20)
-multiplex_plot_d(fit_TB, HPDI=0.9, plot = TRUE, mode="adj", save_plot="DR_TB.pdf", height=10, width=20)
-multiplex_plot_d(fit_SU, HPDI=0.9, plot = TRUE, mode="adj", save_plot="DR_SU.pdf", height=10, width=20)
+multiplex_plot_d(fit_SC, HPDI=0.9, plot = TRUE, mode="cor", save_plot="DR_SC.pdf", height=10, width=20)
+multiplex_plot_d(fit_BS, HPDI=0.9, plot = TRUE, mode="cor", save_plot="DR_BS.pdf", height=10, width=20)
+multiplex_plot_d(fit_TB, HPDI=0.9, plot = TRUE, mode="cor", save_plot="DR_TB.pdf", height=10, width=20)
+multiplex_plot_d(fit_SU, HPDI=0.9, plot = TRUE, mode="cor", save_plot="DR_SU.pdf", height=10, width=20)
 
 #### Dyadic plots
 multiplex_plot_g(fit_SC, HPDI=0.9, plot = TRUE, save_plot="GR_SC.pdf", height=10, width=20)
@@ -138,10 +140,10 @@ tab_SC_dr[which(tab_SC_dr$measure1 == "Give\n(j to i)" & tab_SC_dr$measure2 == "
 tab_TB_dr[which(tab_TB_dr$measure1 == "Give\n(j to i)" & tab_TB_dr$measure2 == "Dominant\n(i to j)"),],
 tab_SU_dr[which(tab_SU_dr$measure1 == "Give\n(j to i)" & tab_SU_dr$measure2 == "Dominant\n(i to j)"),],
 
-tab_BS_dr[which(tab_BS_dr$measure1 == "Give\n(j to i)" & tab_BS_dr$measure2 == "Prestigous\n(i to j)"),],
-tab_SC_dr[which(tab_SC_dr$measure1 == "Give\n(j to i)" & tab_SC_dr$measure2 == "Prestigous\n(i to j)"),],
-tab_TB_dr[which(tab_TB_dr$measure1 == "Give\n(j to i)" & tab_TB_dr$measure2 == "Prestigous\n(i to j)"),],
-tab_SU_dr[which(tab_SU_dr$measure1 == "Give\n(j to i)" & tab_SU_dr$measure2 == "Prestigous\n(i to j)"),]
+tab_BS_dr[which(tab_BS_dr$measure1 == "Give\n(j to i)" & tab_BS_dr$measure2 == "Prestigious\n(i to j)"),],
+tab_SC_dr[which(tab_SC_dr$measure1 == "Give\n(j to i)" & tab_SC_dr$measure2 == "Prestigious\n(i to j)"),],
+tab_TB_dr[which(tab_TB_dr$measure1 == "Give\n(j to i)" & tab_TB_dr$measure2 == "Prestigious\n(i to j)"),],
+tab_SU_dr[which(tab_SU_dr$measure1 == "Give\n(j to i)" & tab_SU_dr$measure2 == "Prestigious\n(i to j)"),]
 )
 
 res_out$merged = paste0(round(res_out$rs_m,2), " (", round(res_out$l,2), ", ", round(res_out$h,2),")")

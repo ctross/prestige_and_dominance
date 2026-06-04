@@ -3,14 +3,14 @@
 tab_TB_dr = multiplex_plot_d(fit_TB_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
 tab_TB_dr$x = 1:length(tab_TB_dr$rs_m)
 
-tab_TB_dr = tab_TB_dr[which(tab_TB_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_TB_dr = tab_TB_dr[which(tab_TB_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 tab_TB_dr$Site = "Highland"
 
 ######################################## Process SU
 tab_SU_dr = multiplex_plot_d(fit_SU_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
 tab_SU_dr$x = 1:length(tab_SU_dr$rs_m)
 
-tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_SU_dr = tab_SU_dr[which(tab_SU_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_SU_dr$Site = "Altiplano"
 
@@ -18,7 +18,7 @@ tab_SU_dr$Site = "Altiplano"
 tab_SC_dr = multiplex_plot_d(fit_SC_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
 tab_SC_dr$x = 1:length(tab_SC_dr$rs_m)
 
-tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_SC_dr = tab_SC_dr[which(tab_SC_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_SC_dr$Site = "Lowland"
 
@@ -26,7 +26,7 @@ tab_SC_dr$Site = "Lowland"
 tab_BS_dr = multiplex_plot_d(fit_BS_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE, mode="adj")
 tab_BS_dr$x = 1:length(tab_BS_dr$rs_m)
 
-tab_BS_dr = tab_BS_dr[which(tab_BS_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigous\n(i to j)")),]
+tab_BS_dr = tab_BS_dr[which(tab_BS_dr$measure2 %in% c("Dominant\n(i to j)", "Prestigious\n(i to j)")),]
 
 tab_BS_dr$Site = "Coast"
 
@@ -60,21 +60,21 @@ c1 = ggplot(tab_dr, aes(x = measure1, y = rs_m, group = Site, color=Site, ymin =
 tab_TB_gr = multiplex_plot_g(fit_TB_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_TB_gr$x = 1:length(tab_TB_gr$rs_m)
 
-tab_TB_gr = tab_TB_gr[which(tab_TB_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_TB_gr = tab_TB_gr[which(tab_TB_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_TB_gr$Site = "Highland"
 
 ######################################## Process SU
 tab_SU_gr = multiplex_plot_g(fit_SU_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_SU_gr$x = 1:length(tab_SU_gr$rs_m)
 
-tab_SU_gr = tab_SU_gr[which(tab_SU_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_SU_gr = tab_SU_gr[which(tab_SU_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_SU_gr$Site = "Altiplano"
 
 ######################################## Process SC
 tab_SC_gr = multiplex_plot_g(fit_SC_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_SC_gr$x = 1:length(tab_SC_gr$rs_m)
 
-tab_SC_gr = tab_SC_gr[which(tab_SC_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_SC_gr = tab_SC_gr[which(tab_SC_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_SC_gr$Site = "Lowland"
 
 
@@ -82,7 +82,7 @@ tab_SC_gr$Site = "Lowland"
 tab_BS_gr = multiplex_plot_g(fit_BS_M, HPDI=0.9, export_as_table = TRUE, plot = FALSE)
 tab_BS_gr$x = 1:length(tab_BS_gr$rs_m)
 
-tab_BS_gr = tab_BS_gr[which(tab_BS_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigous\n(receiver)")),]
+tab_BS_gr = tab_BS_gr[which(tab_BS_gr$measure2 %in% c("Dominant\n(receiver)", "Prestigious\n(receiver)")),]
 tab_BS_gr$Site = "Coast"
 
 ######################################## Merged

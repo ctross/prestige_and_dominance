@@ -260,3 +260,110 @@ n4c = ggraph(g, layout = "manual", x = bb$xy[, 1], y = bb$xy[, 2]) +
 
  
 
+############################## Path lengths
+# SC
+X = ifelse(A_Friend_SC + t(A_Friend_SC) == 2, 1, 0) # and
+diag(X)=rep(0,nrow(X))
+g = graph_from_adjacency_matrix(X, mode = c("undirected"))
+D = igraph::distances(g)
+
+PL = c(D)
+RR = c(A_Respect_SC)
+DD = c(A_Dominant_SC)
+m = 12
+PL[is.infinite(PL)] = m + 1 # Add maximally distant ties as their own col, most to the right
+
+# Build dataset with different distributions
+data_SC = data.frame(
+  type = c(rep("Dominance", length(PL[which(DD==1)])), rep("Prestige", length(PL[which(RR==1)]))),
+  value = c(PL[which(DD==1)], PL[which(RR==1)]),
+  site = "Lowland"
+)
+
+# SU
+X = ifelse(A_Friend_SU + t(A_Friend_SU) == 2, 1, 0) # and
+diag(X)=rep(0,nrow(X))
+g = graph_from_adjacency_matrix(X, mode = c("undirected"))
+D = igraph::distances(g)
+
+PL = c(D)
+RR = c(A_Respect_SU)
+DD = c(A_Dominant_SU)
+PL[is.infinite(PL)] = m + 1
+
+# Build dataset with different distributions
+data_SU = data.frame(
+  type = c(rep("Dominance", length(PL[which(DD==1)])), rep("Prestige", length(PL[which(RR==1)]))),
+  value = c(PL[which(DD==1)], PL[which(RR==1)]),
+  site = "Altiplano"
+)
+
+# BS
+X = ifelse(A_Friend_BS + t(A_Friend_BS) == 2, 1, 0) # and
+diag(X)=rep(0,nrow(X))
+g = graph_from_adjacency_matrix(X, mode = c("undirected"))
+D = igraph::distances(g)
+
+PL = c(D)
+RR = c(A_Respect_BS)
+DD = c(A_Dominant_BS)
+PL[is.infinite(PL)] = m + 1
+
+# Build dataset with different distributions
+data_BS = data.frame(
+  type = c(rep("Dominance", length(PL[which(DD==1)])), rep("Prestige", length(PL[which(RR==1)]))),
+  value = c(PL[which(DD==1)], PL[which(RR==1)]),
+  site = "Coast"
+)
+
+# TB
+X = ifelse(A_Friend_TB + t(A_Friend_TB) == 2, 1, 0) # and
+diag(X)=rep(0,nrow(X))
+g = graph_from_adjacency_matrix(X, mode = c("undirected"))
+D = igraph::distances(g)
+
+PL = c(D)
+RR = c(A_Respect_TB)
+DD = c(A_Dominant_TB)
+PL[is.infinite(PL)] = m + 1
+
+# Build dataset with different distributions
+data_TB = data.frame(
+  type = c(rep("Dominance", length(PL[which(DD==1)])), rep("Prestige", length(PL[which(RR==1)]))),
+  value = c(PL[which(DD==1)], PL[which(RR==1)]),
+  site = "Highland"
+)
+
+# Merge
+data = rbind(data_TB, data_BS, data_SU, data_SC)
+data = data[which(data$value>0),]
+
+cols = plvs_vltra("mystic_mausoleum", rev=FALSE, elements=NULL, show=FALSE)
+
+# Represent it
+p1 = data %>%
+  ggplot( aes(x=value, fill=site)) +
+    geom_histogram( color="#e9ecef", alpha=0.6, position = 'identity') +
+    scale_fill_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
+    facet_grid(vars(site), vars(type), scales = "free_y" )+
+    labs(x="Path length in social network", y="Count") + theme(legend.position = "none")
+
+
+ggsave("pl_both.pdf", p1, width=8, height=6)
+
+
+################# Cross tabs
+prop.table(table(c(ifelse(A_Respect_BS==0,"N","R")), c(ifelse(A_Trusted_BS==0,"N","T"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_SC==0,"N","R")), c(ifelse(A_Trusted_SC==0,"N","T"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_TB==0,"N","R")), c(ifelse(A_Trusted_TB==0,"N","T"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_SU==0,"N","R")), c(ifelse(A_Trusted_SU==0,"N","T"))), margin = 1)[2,2]
+
+
+prop.table(table(c(ifelse(A_Respect_BS==0,"N","R")), c(ifelse(A_Like_BS==0,"N","Y"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_SC==0,"N","R")), c(ifelse(A_Like_SC==0,"N","Y"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_TB==0,"N","R")), c(ifelse(A_Like_TB==0,"N","Y"))), margin = 1)[2,2]
+prop.table(table(c(ifelse(A_Respect_SU==0,"N","R")), c(ifelse(A_Like_SU==0,"N","Y"))), margin = 1)[2,2]
+
+
+
+

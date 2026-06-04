@@ -232,15 +232,6 @@ ggsave("payouts_from_self.pdf", p1, width=10, height=6)
 ggsave("payouts_from_others.pdf", p2, width=10, height=6)
 
 
-df_plot = rbind(df_plot_SC_2, df_plot_BS_2, df_plot_SU_2, df_plot_TB_2)
-p3 = ggplot(df_plot, aes(x = Resp, y = Dom, color = Site, fill = Site)) +
-  geom_point() + theme(legend.position="bottom") + facet_grid(. ~ Site, scales="free") +
-  geom_smooth(method=lm) +
-  scale_color_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
-  scale_fill_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7]))
-
-
-
 
 
 ############################################# Social perception
@@ -303,85 +294,15 @@ data_lf = data_lf[which(data_lf$Outcome == "Centrality"),]
 data_lf$Site = factor(data_lf$Site)
 data_lf$Site = factor(data_lf$Site, levels=c("Coast", "Lowland", "Highland", "Altiplano"))
 
-p3 = ggplot(data=data_lf, aes(x=Prestigious, y=Dominant)) +
-  geom_point(aes(size=Perception, color=Site, fill=Site),shape=21,alpha = 0.2) +
-  geom_point(aes(size=Perception, color=Site),shape=21) + 
-  facet_grid(Outcome ~ Site, scale="free")+
-    scale_color_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
+p3 = ggplot(data=data_lf, aes(x=Prestigious, y=Dominant, color = Site, fill = Site)) +
+  geom_point(aes(color=Site, fill=Site),shape=21) +
+  geom_point(aes(color=Site),shape=21) + 
+  facet_grid(. ~ Site, scale="free")+
+  geom_smooth(method=lm) +
+  scale_color_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
   scale_fill_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
-  scale_size(range = c(0.01, 5),guide = "none") + theme(legend.position="none")  
+  theme(legend.position="none")  
 
-ggsave("DomPrestPerception_Cent.pdf", p3, width=10, height=3)
-
-
+ggsave("DomPrestPerception.pdf", p3, width=10, height=3)
 
 
-############################################# Social perception
-con = colSums(A_Contempt_BS)
-res = colSums(A_Respect_BS)
-dom = colSums(A_Dominant_BS)
-pas = colSums(A_Passive_BS)
-fear = standardize(colSums(A_Fear_BS))
-like = standardize(colSums(A_Like_BS))
-trust = standardize(colSums(A_Trusted_BS))
-
-dom2 = standardize(dom-pas)
-res2 = standardize(res-con)
-
-data_lf_bs = data.frame(Dominant = c(dom2,dom2,dom2), Prestigious = c(res2,res2,res2), Perception = c(like, fear, trust),Outcome=rep(c("Liked","Feared","Trusted"),each=length(like)), Site="Coast")
-
-con = colSums(A_Contempt_SC)
-res = colSums(A_Respect_SC)
-dom = colSums(A_Dominant_SC)
-pas = colSums(A_Passive_SC)
-fear = standardize(colSums(A_Fear_SC))
-like = standardize(colSums(A_Like_SC))
-trust = standardize(colSums(A_Trusted_SC))
-
-dom2 = standardize(dom-pas)
-res2 = standardize(res-con)
-
-data_lf_sc = data.frame(Dominant = c(dom2,dom2,dom2), Prestigious = c(res2,res2,res2), Perception = c(like, fear, trust),Outcome=rep(c("Liked","Feared","Trusted"),each=length(like)), Site="Lowland")
-
-con = colSums(A_Contempt_SU)
-res = colSums(A_Respect_SU)
-dom = colSums(A_Dominant_SU)
-pas = colSums(A_Passive_SU)
-fear = standardize(colSums(A_Fear_SU))
-like = standardize(colSums(A_Like_SU))
-trust = standardize(colSums(A_Trusted_SU))
-
-dom2 = standardize(dom-pas)
-res2 = standardize(res-con)
-
-data_lf_su = data.frame(Dominant = c(dom2,dom2,dom2), Prestigious = c(res2,res2,res2), Perception = c(like, fear, trust),Outcome=rep(c("Liked","Feared","Trusted"),each=length(like)), Site="Altiplano")
-
-con = colSums(A_Contempt_TB)
-res = colSums(A_Respect_TB)
-dom = colSums(A_Dominant_TB)
-pas = colSums(A_Passive_TB)
-fear = standardize(colSums(A_Fear_TB))
-like = standardize(colSums(A_Like_TB))
-trust = standardize(colSums(A_Trusted_TB))
-
-dom2 = standardize(dom-pas)
-res2 = standardize(res-con)
-
-data_lf_tb = data.frame(Dominant = c(dom2,dom2,dom2), Prestigious = c(res2,res2,res2), Perception = c(like, fear, trust),Outcome=rep(c("Liked","Feared","Trusted"),each=length(like)), Site="Highland")
-
-data_lf = rbind(data_lf_bs, data_lf_sc, data_lf_su, data_lf_tb)
-
-data_lf = data_lf[which(data_lf$Perception != "Centrality"),]
-
-data_lf$Site = factor(data_lf$Site)
-data_lf$Site = factor(data_lf$Site, levels=c("Coast", "Lowland", "Highland", "Altiplano"))
-
-p3 = ggplot(data=data_lf, aes(x=Prestigious, y=Dominant)) +
-  geom_point(aes(size=Perception, color=Site, fill=Site),shape=21,alpha = 0.2) +
-  geom_point(aes(size=Perception, color=Site),shape=21) + 
-  facet_grid(Outcome ~ Site, scale="free")+
-    scale_color_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
-  scale_fill_manual(values = c("Lowland"=cols[5], "Coast"=cols[1], "Highland"=cols[3], "Altiplano"=cols[7])) +
-  scale_size(range = c(0.01, 5),guide = "none") + theme(legend.position="none")  
-
-ggsave("DomPrestPerception.pdf", p3, width=10, height=8)

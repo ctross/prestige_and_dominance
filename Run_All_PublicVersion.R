@@ -15,14 +15,18 @@ library(rethinking)
 library(colorspace)
 library(rstan)
 library(rethinking)
-library(PlvsVltra)
+library(PlvsVltra)    # github.com/ctross/PlvsVltra
 library(graphlayouts)
 library(ggraph)
 library(oaqc)
 library(STRAND)
+library(xtable)
+library(ggplot2)
+library(dplyr)
+library(hrbrthemes)
 
 ################################################ Set WD
- path = "C:\\Users\\..."
+ path = "C:\\Users\\your_path\\prestige_and_dominance-main"
  setwd(path)
 
 ######################### Load data
@@ -34,20 +38,20 @@ library(STRAND)
  source("Descriptives.R")
 
 ######################### Run models
- source("Code/Model_BS.R")
- source("Code/Model_SC.R")
- source("Code/Model_SU.R")
- source("Code/Model_TB.R")
+ source("Model_BS.R")
+ source("Model_SC.R")
+ source("Model_SU.R")
+ source("Model_TB.R")
 
- source("Code/Model_TB_BySex.R")
- source("Code/Model_SU_BySex.R")
- source("Code/Model_SC_BySex.R")
- source("Code/Model_BS_BySex.R")
+ source("Model_TB_BySex.R")
+ source("Model_SU_BySex.R")
+ source("Model_SC_BySex.R")
+ source("Model_BS_BySex.R")
 
- source("Code/Caterpillar_Figures.R")
- source("Code/Caterpillar_Figures_M.R")
- source("Code/Caterpillar_Figures_F.R")
- source("Code/Caterpillar_Figures_BySex.R")
+ source("Caterpillar_Figures.R")
+ source("Caterpillar_Figures_M.R")
+ source("Caterpillar_Figures_F.R")
+ source("Caterpillar_Figures_BySex.R")
 
 
 
